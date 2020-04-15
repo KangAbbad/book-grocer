@@ -13,7 +13,7 @@ class App extends Component {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
-          <Stack.Screen name="DetailScreen" component={DetailScreen} />
+          <Stack.Screen name='DetailScreen' component={DetailScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     )
