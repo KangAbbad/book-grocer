@@ -6,6 +6,8 @@
     "plugin:react/recommended"
   ],
   "rules": {
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "quote-props": "off",
+    "dot-notation": "off"
   }
 }

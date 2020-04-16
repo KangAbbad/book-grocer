@@ -9,10 +9,15 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 
-import { colors } from '../../constant'
+import { Colors, BaseStyles } from '../../constant'
+import Button from '../../components/Button'
+
 import BlibliophileBook from '../../assets/icons/blibliophile-book.svg'
 import BusinessShop from '../../assets/icons/business-shop.svg'
 import Collecting from '../../assets/icons/collecting.svg'
+import BookLover from '../../assets/icons/book-lover.svg'
+import Leaf1 from '../../assets/icons/leaf-1.svg'
+import Leaf2 from '../../assets/icons/leaf-2.svg'
 
 class OnboardingScreen extends Component {
   constructor (props) {
@@ -33,6 +38,11 @@ class OnboardingScreen extends Component {
           hero: 'Sell or Recycle Your Old\nBooks With Us',
           subhero: 'If you\'re looking to downsize, sell or recycle old\nbooks, Book Grocer can help',
           icon: Collecting
+        },
+        {
+          hero: 'Books For\nEvery Taste.',
+          subhero: '',
+          icon: null
         }
       ],
       activeSlide: 0
@@ -43,7 +53,7 @@ class OnboardingScreen extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
+      <View style={styles['container']}>
         {this.renderCarousel()}
         {this.renderPagination()}
       </View>
@@ -76,8 +86,8 @@ class OnboardingScreen extends Component {
       <Pagination
         dotsLength={onboards.length}
         activeDotIndex={activeSlide}
-        containerStyle={styles.paginationContainer}
-        dotStyle={styles.dotStyle}
+        containerStyle={styles['pagination__container']}
+        dotStyle={styles['dot-style']}
         inactiveDotOpacity={0.2}
         inactiveDotScale={1}
       />
@@ -85,10 +95,18 @@ class OnboardingScreen extends Component {
   }
 
   renderItem = ({ item, index }) => {
+    if (index === 3) {
+      return this.renderOnboardingLogin({ item, index })
+    } else {
+      return this.renderOnboardingItem({ item, index })
+    }
+  }
+
+  renderOnboardingItem = ({ item, index }) => {
     return (
       <View
         key={index}
-        style={styles.container}
+        style={styles['container']}
       >
         {this.renderStatusBar()}
         {this.renderHeader(item)}
@@ -107,26 +125,114 @@ class OnboardingScreen extends Component {
     )
   }
 
-  renderHeader = ({ hero, subhero }) => {
+  renderHeader = ({ hero, subhero = '' }) => {
+    const header = hero.includes('Books For')
+      ? { marginTop: EStyleSheet.value('120rem') }
+      : styles['header']
+
     return (
-      <View style={styles.header}>
-        <Text style={styles.hero}>
+      <View style={header}>
+        <Text style={this.buildHero()}>
           {hero}
         </Text>
 
-        <Text style={styles.subhero}>
+        <Text style={this.buildSubHero()}>
           {subhero}
         </Text>
       </View>
     )
   }
 
+  buildHero = () => {
+    return [
+      BaseStyles['text'],
+      BaseStyles['text--giant-s'],
+      BaseStyles['text--green'],
+      BaseStyles['text--center']
+    ]
+  }
+
+  buildSubHero = () => {
+    return [
+      BaseStyles['text'],
+      BaseStyles['text--large'],
+      BaseStyles['text--green'],
+      BaseStyles['text--center'],
+      styles['subhero']
+    ]
+  }
+
   renderIcon = (Icon, index) => {
     const height = EStyleSheet.value(index === 2 ? '200rem' : '180rem')
-    return (
+    return index !== 3 && (
       <Icon
         height={height}
-        style={styles.heroIconWrapper}
+        style={styles['hero__icon__wrapper']}
+      />
+    )
+  }
+
+  renderOnboardingLogin = ({ item, index }) => {
+    return (
+      <View
+        key={index}
+        style={styles['container']}
+      >
+        {this.renderStatusBar()}
+        {this.renderHeader(item)}
+        {this.renderLogin()}
+        {this.renderLoginBg01()}
+        {this.renderLoginBg02()}
+        {this.renderLoginBg03()}
+      </View>
+    )
+  }
+
+  renderLogin = () => {
+    return (
+      <View style={styles['login__wrapper']}>
+        {this.renderLoginBtn('Sign In')}
+        {this.renderLoginBtn('Sign Up')}
+      </View>
+    )
+  }
+
+  renderLoginBtn = (title = 'Custom Button') => {
+    return (
+      <Button
+        lg
+        title={title}
+        containerStyle={styles['login__btn']}
+      />
+    )
+  }
+
+  renderLoginBg01 = () => {
+    return (
+      <Leaf1
+        height={EStyleSheet.value('275rem')}
+        width={EStyleSheet.value('100rem')}
+        style={styles['login__bg--1']}
+      />
+    )
+  }
+
+  renderLoginBg02 = () => {
+    return (
+      <Leaf2
+        height={EStyleSheet.value('220rem')}
+        width={EStyleSheet.value('110rem')}
+        style={styles['login__bg--2']}
+      />
+    )
+  }
+
+  renderLoginBg03 = () => {
+    return (
+      <BookLover
+        height={EStyleSheet.value('270rem')}
+        width={EStyleSheet.value('345rem')}
+        style={styles['login__bg--3']}
       />
     )
   }
@@ -137,39 +243,58 @@ export default OnboardingScreen
 const { height } = Dimensions.get('window')
 
 const styles = EStyleSheet.create({
-  container: {
+  'container': {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: colors.white
+    backgroundColor: Colors.White,
+    overflow: 'hidden'
   },
-  header: {
+  'header': {
     marginTop: '80rem'
   },
-  hero: {
-    fontSize: '25rem',
-    color: colors.green,
-    includeFontPadding: false,
-    textAlign: 'center'
-  },
-  subhero: {
-    fontSize: '12rem',
-    color: colors.green,
-    includeFontPadding: false,
-    textAlign: 'center',
+  'subhero': {
     opacity: 0.5,
     marginTop: '23rem'
   },
-  heroIconWrapper: {
+  'hero__icon__wrapper': {
     position: 'absolute',
     top: height / 2.5
   },
-  paginationContainer: {
+  'pagination__container': {
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    left: 0,
     paddingVertical: '60rem'
   },
-  dotStyle: {
+  'dot-style': {
     borderRadius: '10rem',
     width: '10rem',
     height: '10rem',
-    backgroundColor: colors.green
+    backgroundColor: Colors.Green
+  },
+  'login__wrapper': {
+    zIndex: 0,
+    width: '100%',
+    marginTop: '35rem'
+  },
+  'login__btn': {
+    marginHorizontal: '20rem',
+    marginTop: '15rem'
+  },
+  'login__bg--1': {
+    position: 'absolute',
+    top: 30,
+    left: -50
+  },
+  'login__bg--2': {
+    position: 'absolute',
+    top: 95,
+    right: -72
+  },
+  'login__bg--3': {
+    position: 'absolute',
+    bottom: -10,
+    left: -163
   }
 })
