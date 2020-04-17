@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   StatusBar,
   View,
@@ -198,13 +199,19 @@ class OnboardingScreen extends Component {
   }
 
   renderLoginBtn = (title = 'Custom Button') => {
+    const status = title.includes('In') ? 'sign_in' : 'sign_up'
     return (
       <Button
         lg
         title={title}
         containerStyle={styles['login__btn']}
+        onPress={() => this.onLogin(status)}
       />
     )
+  }
+
+  onLogin = (status) => {
+    this.props.navigation.navigate('LoginScreen', { status })
   }
 
   renderLoginBg01 = () => {
@@ -236,6 +243,10 @@ class OnboardingScreen extends Component {
       />
     )
   }
+}
+
+OnboardingScreen.propTypes = {
+  navigation: PropTypes.object
 }
 
 export default OnboardingScreen
@@ -284,17 +295,17 @@ const styles = EStyleSheet.create({
   },
   'login__bg--1': {
     position: 'absolute',
-    top: 30,
-    left: -50
+    top: '25rem',
+    left: '-45rem'
   },
   'login__bg--2': {
     position: 'absolute',
-    top: 95,
-    right: -72
+    top: '80rem',
+    right: '-60rem'
   },
   'login__bg--3': {
     position: 'absolute',
-    bottom: -10,
-    left: -163
+    bottom: '-10rem',
+    left: '-134rem'
   }
 })

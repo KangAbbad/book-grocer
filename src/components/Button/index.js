@@ -9,10 +9,11 @@ import Utils from '../../constant/Utils'
 
 class Button extends Component {
   render () {
+    const { onPress } = this.props
     return (
       <BaseButton
         style={this.buildBtnStyle()}
-        {...this.props}
+        onPress={onPress}
       >
         <Text style={this.buildBtnTextStyle()}>
           {this.props.title}
@@ -22,42 +23,46 @@ class Button extends Component {
   }
 
   buildBtnStyle = () => {
-    const { containerStyle } = this.props
-    if (this.props.lg) {
-      return Utils.customStyle(
-        [
-          styles['btn'],
-          styles['btn--large']
-        ],
-        containerStyle
-      )
-    }
+    const { lg, outline, containerStyle } = this.props
+    const customStyles = [styles['btn']]
 
-    return Utils.customStyle(styles['btn'], containerStyle)
+    if (lg) customStyles.push(styles['btn--large'])
+    if (outline) customStyles.push(styles['btn--outline'])
+
+    return Utils.customStyle(customStyles, containerStyle)
   }
 
   buildBtnTextStyle = () => {
-    return [
+    const { outline } = this.props
+    const customStyles = [
       BaseStyles['text'],
       BaseStyles['text--large'],
       BaseStyles['text--white']
     ]
+
+    if (outline) customStyles.push(BaseStyles['text--green'])
+
+    return customStyles
   }
 }
 
 Button.propTypes = {
   title: PropTypes.string,
   lg: PropTypes.bool,
+  outline: PropTypes.bool,
   containerStyle: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array
-  ])
+  ]),
+  onPress: PropTypes.func
 }
 
 Button.defaultProps = {
   title: 'My Custom Button',
   lg: false,
-  containerStyle: {}
+  outline: false,
+  containerStyle: {},
+  onPress: () => {}
 }
 
 export default Button
@@ -65,6 +70,7 @@ export default Button
 const styles = EStyleSheet.create({
   'btn': {
     borderRadius: '15rem',
+    overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.Green,
@@ -72,5 +78,10 @@ const styles = EStyleSheet.create({
   },
   'btn--large': {
     height: '45rem'
+  },
+  'btn--outline': {
+    borderWidth: 1,
+    borderColor: Colors.Green,
+    backgroundColor: Colors.White
   }
 })

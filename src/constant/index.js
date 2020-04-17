@@ -1,7 +1,10 @@
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 const Colors = {
+  Black: '#1F1F1F',
   White: '#FFFFFF',
+  Gray: '#F9F9F9',
+  DarkGray: '#AFAFAF',
   Green: '#00AC92'
 }
 
@@ -70,11 +73,17 @@ const BaseStyles = EStyleSheet.create({
   },
 
   // Text Color
+  'text--black': {
+    color: Colors.Black
+  },
   'text--white': {
     color: Colors.White
   },
   'text--green': {
     color: Colors.Green
+  },
+  'text--dark-gray': {
+    color: Colors.DarkGray
   }
 })
 

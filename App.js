@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 import OnboardingScreen from './src/screens/OnboardingScreen'
-import DetailScreen from './src/screens/DetailScreen'
+import LoginScreen from './src/screens/LoginScreen'
 
 const Stack = createStackNavigator()
 
@@ -26,8 +26,9 @@ class App extends Component {
           />
 
           <Stack.Screen
-            name='DetailScreen'
-            component={DetailScreen}
+            name='LoginScreen'
+            component={LoginScreen}
+            options={{ headerShown: false }}
           />
         </Stack.Navigator>
       </NavigationContainer>
