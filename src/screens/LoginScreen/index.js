@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { StatusBar, Platform, View, TouchableOpacity, Text, TextInput, FlatList } from 'react-native'
+import { StatusBar, Platform, View, TouchableOpacity, Text, FlatList } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
+import { Colors, BaseStyles } from '../../constant'
 import Button from '../../components/Button'
 import CheckBox from '../../components/CheckBox'
-import { Colors, BaseStyles } from '../../constant'
+import Input from '../../components/Input'
 
 class LoginScreen extends Component {
   constructor (props) {
@@ -151,7 +152,7 @@ class LoginScreen extends Component {
         keyExtractor={(item, index) => item + index.toString()}
         style={styles['form']}
         renderItem={({ item, index }) => (
-          <TextInput
+          <Input
             key={index}
             placeholder={item.placeholder}
             style={styles['form__input']}
@@ -271,13 +272,6 @@ const styles = EStyleSheet.create({
     marginTop: '15rem'
   },
   'form__input': {
-    borderRadius: '15rem',
-    height: 'auto',
-    backgroundColor: Colors.Gray,
-    fontSize: '12rem',
-    color: Colors.Black,
-    paddingVertical: '13rem',
-    paddingHorizontal: '18rem',
     marginTop: '17rem'
   },
   'form__option': {
