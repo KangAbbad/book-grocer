@@ -257,7 +257,7 @@ const styles = EStyleSheet.create({
     paddingBottom: '2rem'
   },
   'btn--submit': {
-    marginTop: '18rem'
+    marginTop: '20rem'
   },
   'content': {
     paddingHorizontal: '20rem'
