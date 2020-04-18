@@ -8,12 +8,20 @@ import { Colors, BaseStyles } from '../../constant'
 import Button from '../../components/Button'
 import CheckBox from '../../components/CheckBox'
 import Input from '../../components/Input'
+import Utils from '../../constant/Utils'
 
 class LoginScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      checked: false
+      checked: true,
+      dataForm: {
+        username: '',
+        email: '',
+        phone: '',
+        group_code: '',
+        password: ''
+      }
     }
 
     const { status } = props.route.params
@@ -116,50 +124,79 @@ class LoginScreen extends Component {
     const formInput = {
       sign_in: [
         {
+          label: 'group_code',
           placeholder: 'Group Special Code (optional)'
         },
         {
+          label: 'email',
           placeholder: 'Email Address'
         },
         {
+          label: 'password',
           placeholder: 'Password'
         }
       ],
       sign_up: [
         {
+          label: 'username',
           placeholder: 'Username'
         },
         {
+          label: 'email',
           placeholder: 'Email Address'
         },
         {
+          label: 'phone',
           placeholder: 'Phone'
         },
         {
+          label: 'group_code',
           placeholder: 'Group Special Code (optional)'
         },
         {
+          label: 'password',
           placeholder: 'Password'
         }
       ]
     }
 
     const data = this.signIn ? formInput.sign_in : formInput.sign_up
-
     return (
       <FlatList
         data={data}
         keyExtractor={(item, index) => item + index.toString()}
         style={styles['form']}
-        renderItem={({ item, index }) => (
-          <Input
-            key={index}
-            placeholder={item.placeholder}
-            style={styles['form__input']}
-          />
-        )}
+        renderItem={({ item, index }) => {
+          const secureTextEntry = item.label === 'password'
+          const keyboardType = item.label === 'phone'
+            ? 'number-pad'
+            : item.label === 'email'
+              ? 'email-address'
+              : 'default'
+
+          return (
+            <Input
+              key={index}
+              secureTextEntry={secureTextEntry}
+              keyboardType={keyboardType}
+              placeholder={item.placeholder}
+              value={this.state[item.label]}
+              style={styles['form__input']}
+              onChangeText={(value) => this.onChangeText(item.label, value)}
+            />
+          )
+        }}
       />
     )
+  }
+
+  onChangeText = (key, value) => {
+    this.setState(prevState => ({
+      dataForm: {
+        ...prevState.dataForm,
+        [key]: value
+      }
+    }))
   }
 
   renderFormOption = () => {
@@ -194,7 +231,7 @@ class LoginScreen extends Component {
               BaseStyles['text--dark-gray']
             ]}
           >
-            Forgot Your Password?
+            Forgot Your Password? {this.state.dataForm.username}
           </Text>
         </TouchableOpacity>
       )
@@ -208,15 +245,29 @@ class LoginScreen extends Component {
   }
 
   renderSubmitBtn = () => {
+    const { dataForm } = this.state
     const title = this.signIn ? 'Sign In' : 'Sign Up'
+
+    const disabled = this.signIn
+      ? !Utils.emailValidation(dataForm.email) || !dataForm.password
+      : !dataForm.username || !Utils.emailValidation(dataForm.email) || !dataForm.password
+
     return (
       <Button
         lg
-        outline
+        outline={disabled}
+        disabled={disabled}
         title={title}
         containerStyle={styles['btn--submit']}
+        onPress={this.onSubmit}
       />
     )
+  }
+
+  onSubmit = () => {
+    return this.signUp
+      ? this.props.navigation.navigate('StoreLocatorScreen')
+      : () => {}
   }
 }
 

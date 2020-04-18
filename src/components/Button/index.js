@@ -9,9 +9,10 @@ import Utils from '../../constant/Utils'
 
 class Button extends Component {
   render () {
-    const { onPress } = this.props
+    const { onPress, disabled } = this.props
     return (
       <BaseButton
+        disabled={disabled}
         style={this.buildBtnStyle()}
         onPress={onPress}
       >
@@ -50,6 +51,7 @@ Button.propTypes = {
   title: PropTypes.string,
   lg: PropTypes.bool,
   outline: PropTypes.bool,
+  disabled: PropTypes.bool,
   containerStyle: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array
@@ -61,6 +63,7 @@ Button.defaultProps = {
   title: 'My Custom Button',
   lg: false,
   outline: false,
+  disabled: false,
   containerStyle: {},
   onPress: () => {}
 }
