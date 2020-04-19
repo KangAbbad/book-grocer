@@ -4,8 +4,7 @@ import {
   StatusBar,
   View,
   Text,
-  Dimensions,
-  YellowBox
+  Dimensions
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
@@ -48,8 +47,6 @@ class OnboardingScreen extends Component {
       ],
       activeSlide: 0
     }
-
-    YellowBox.ignoreWarnings(['FlatList: Calling `getNode()`'])
   }
 
   render () {
