@@ -5,7 +5,11 @@ const Colors = {
   White: '#FFFFFF',
   Gray: '#F9F9F9',
   DarkGray: '#AFAFAF',
-  Green: '#00AC92'
+  Green: '#00AC92',
+  Purple: '#1C4A7E',
+  DarkPurple: '#202040',
+  Orange: '#FF6363',
+  Cream: '#FFBD69'
 }
 
 const BaseStyles = EStyleSheet.create({
