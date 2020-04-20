@@ -4,18 +4,32 @@ const Colors = {
   Black: '#1F1F1F',
   White: '#FFFFFF',
   Silver: '#E0E0E0',
+
   Gray: '#F9F9F9',
   DarkGray: '#AFAFAF',
+
   Green: '#00AC92',
+
   Purple: '#1C4A7E',
   DarkPurple: '#202040',
-  Orange: '#FF6363',
-  Cream: '#FFBD69'
+
+  BrightMaroon: '#B7143C',
+
+  BitterSweetOrange: '#FF6363',
+  TartOrange: '#EF4C45',
+  OrangePantone: '#F46217',
+  MariGold: '#E6A500',
+
+  Brown: '#D36A43',
+  Cream: '#FFBD69',
+
+  BlueCerulean: '#09ADE2'
 }
 
 const BaseStyles = EStyleSheet.create({
   // Text Size
   'text': {
+    fontFamily: 'SFProDisplay-Regular',
     includeFontPadding: false
   },
   'text--giant-l': {
@@ -57,10 +71,10 @@ const BaseStyles = EStyleSheet.create({
 
   // Text Style
   'text--bold': {
-    fontWeight: '700'
+    fontFamily: 'SFProDisplay-Bold'
   },
   'text--normal': {
-    fontWeight: '500'
+    fontFamily: 'SFProDisplay-Regular'
   },
   'text--italic': {
     fontStyle: 'italic'
