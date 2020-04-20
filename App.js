@@ -5,30 +5,32 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
-import OnboardingScreen from './src/screens/OnboardingScreen'
-import LoginScreen from './src/screens/LoginScreen'
+import AuthNavigator from './src/navigation/AuthNavigator'
+import MainNavigator from './src/navigation/MainNavigator'
 
 const Stack = createStackNavigator()
 
 class App extends Component {
   render () {
-    YellowBox.ignoreWarnings(['Remote debugger'])
+    YellowBox.ignoreWarnings([
+      'Remote debugger',
+      'FlatList: Calling `getNode()`'
+    ])
     const fullWidth = Dimensions.get('window').width
     EStyleSheet.build({ $rem: fullWidth / 320 })
 
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false }}
+        >
           <Stack.Screen
-            name='OnboardingScreen'
-            component={OnboardingScreen}
-            options={{ headerShown: false }}
+            name='Auth'
+            component={AuthNavigator}
           />
-
           <Stack.Screen
-            name='LoginScreen'
-            component={LoginScreen}
-            options={{ headerShown: false }}
+            name='Main'
+            component={MainNavigator}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -3,6 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 const Colors = {
   Black: '#1F1F1F',
   White: '#FFFFFF',
+  Silver: '#E0E0E0',
   Gray: '#F9F9F9',
   DarkGray: '#AFAFAF',
   Green: '#00AC92',

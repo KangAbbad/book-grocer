@@ -75,7 +75,7 @@ class HomeScreen extends Component {
           images: [solidTankGirl, illegal, slugfest]
         },
         {
-          genre: 'Manga',
+          genre: 'Adult',
           images: [solidTankGirl, illegal, slugfest]
         }
       ],
@@ -103,6 +103,7 @@ class HomeScreen extends Component {
     return (
       <FlatList
         data={[0]}
+        showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => item + index.toString()}
         style={styles['container']}
         renderItem={() => {
@@ -473,6 +474,7 @@ const styles = EStyleSheet.create({
     backgroundColor: Colors.White
   },
   'wrapper': {
+    paddingBottom: '30rem'
   },
   'header': {
     backgroundColor: Colors.Green,
