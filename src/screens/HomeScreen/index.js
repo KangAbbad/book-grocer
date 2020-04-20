@@ -350,7 +350,7 @@ class HomeScreen extends Component {
 
   renderGenreItem = ({ item }) => {
     const { genres } = this.state
-    const colors = [Colors.Green, Colors.Purple, Colors.Cream, Colors.Orange]
+    const colors = [Colors.Green, Colors.Purple, Colors.Cream, Colors.BitterSweetOrange]
     let backgroundColor
 
     for (var i = 0; i < genres.length; i++) {

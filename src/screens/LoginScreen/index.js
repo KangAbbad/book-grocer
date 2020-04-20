@@ -318,9 +318,7 @@ const styles = EStyleSheet.create({
     marginTop: '15rem'
   },
   'form': {
-    // borderWidth: 1,
-    // borderColor: 'red',
-    marginTop: '15rem'
+    marginTop: '10rem'
   },
   'form__input': {
     marginTop: '17rem'
