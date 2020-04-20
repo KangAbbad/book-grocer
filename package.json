@@ -27,6 +27,7 @@
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",
     "react-native-snap-carousel": "^3.9.0",
+    "react-native-super-grid": "^3.2.0",
     "react-native-svg": "11.0.1",
     "react-native-vector-icons": "^6.6.0"
   },
@@ -53,5 +54,8 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "rnpm": {
+    "assets": ["./src/assets/fonts/"]
+   }
 }
