@@ -129,7 +129,7 @@ class SearchScreen extends Component {
   renderSearchBarLeft = () => {
     return (
       <TouchableWithoutFeedback
-        onPress={() => {}}
+        onPress={this.onSearch}
       >
         <Row style={styles['searchbar__content--left']}>
           <Ionicons
@@ -152,6 +152,10 @@ class SearchScreen extends Component {
         </Row>
       </TouchableWithoutFeedback>
     )
+  }
+
+  onSearch = () => {
+    this.props.navigation.navigate('SearchFocusScreen')
   }
 
   renderSearchBarRight = () => {

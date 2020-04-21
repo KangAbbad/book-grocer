@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { Colors } from '../../constant'
 import HomeScreen from '../../screens/HomeScreen'
-import SearchScreen from '../../screens/SearchScreen'
+import SearchNavigator from '../SearchNavigator'
 import WishlistScreen from '../../screens/WishlistScreen'
 import CartScreen from '../../screens/CartScreen'
 import EStyleSheet from 'react-native-extended-stylesheet'
@@ -23,8 +23,8 @@ class MainNavigator extends Component {
           icon: 'md-home'
         },
         {
-          name: 'SearchScreen',
-          component: SearchScreen,
+          name: 'SearchNavigator',
+          component: SearchNavigator,
           label: 'Search',
           icon: 'ios-search'
         },
@@ -47,7 +47,7 @@ class MainNavigator extends Component {
   render () {
     return (
       <Tab.Navigator
-        initialRouteName='HomeScreen'
+        initialRouteName='SearchNavigator'
         tabBarOptions={{
           activeTintColor: Colors.White,
           inactiveTintColor: Colors.Silver,
