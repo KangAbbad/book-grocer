@@ -35,7 +35,7 @@ class CheckBox extends Component {
         <FontAwesome5
           name='check'
           color={Colors.White}
-          size={EStyleSheet.value('10rem')}
+          size={EStyleSheet.value('9rem')}
         />
       </View>
     )
@@ -82,8 +82,8 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',
-    height: '20rem',
-    width: '20rem'
+    height: '18rem',
+    width: '18rem'
   },
   'checkbox--on': {
     backgroundColor: Colors.Green
@@ -95,6 +95,6 @@ const styles = EStyleSheet.create({
     backgroundColor: Colors.White
   },
   'label': {
-    marginLeft: '10rem'
+    marginLeft: '8rem'
   }
 })
