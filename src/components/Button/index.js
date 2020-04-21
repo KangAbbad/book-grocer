@@ -24,9 +24,10 @@ class Button extends Component {
   }
 
   buildBtnStyle = () => {
-    const { lg, outline, containerStyle } = this.props
+    const { sm, lg, outline, containerStyle } = this.props
     const customStyles = [styles['btn']]
 
+    if (sm) customStyles.push(styles['btn--small'])
     if (lg) customStyles.push(styles['btn--large'])
     if (outline) customStyles.push(styles['btn--outline'])
 
@@ -34,13 +35,14 @@ class Button extends Component {
   }
 
   buildBtnTextStyle = () => {
-    const { outline } = this.props
+    const { sm, lg, outline } = this.props
     const customStyles = [
       BaseStyles['text'],
-      BaseStyles['text--large'],
       BaseStyles['text--white']
     ]
 
+    if (sm) customStyles.push(BaseStyles['text--medium'])
+    if (lg) customStyles.push(BaseStyles['text--large'])
     if (outline) customStyles.push(BaseStyles['text--green'])
 
     return customStyles
@@ -49,6 +51,7 @@ class Button extends Component {
 
 Button.propTypes = {
   title: PropTypes.string,
+  sm: PropTypes.bool,
   lg: PropTypes.bool,
   outline: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -61,6 +64,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   title: 'My Custom Button',
+  sm: false,
   lg: false,
   outline: false,
   disabled: false,
@@ -77,7 +81,12 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.Green,
-    height: '38rem'
+    height: '38rem',
+    paddingHorizontal: '10rem'
+  },
+  'btn--small': {
+    borderRadius: '10rem',
+    height: '25rem'
   },
   'btn--large': {
     height: '45rem'

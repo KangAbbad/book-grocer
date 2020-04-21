@@ -6,7 +6,6 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import Carousel from 'react-native-snap-carousel'
 import Feather from 'react-native-vector-icons/Feather'
 import Svg, { Ellipse } from 'react-native-svg'
-// import { Rating } from 'react-native-ratings'
 import StarRating from '@williamho6000/react-native-star-rating'
 
 import { Colors, BaseStyles } from '../../constant'
